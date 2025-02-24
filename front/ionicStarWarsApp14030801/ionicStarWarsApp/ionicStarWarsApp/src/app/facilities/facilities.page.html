@@ -1,0 +1,273 @@
+<ion-content  overflow-scroll="false" >
+  <app-toolbar></app-toolbar>
+  <div class="main1">
+    <div>
+      <div class="videomain">
+        <video #myVideo controls autoplay style="border-radius: 45px;">
+          <source src="https://golestankooh.com/videos/mainvideo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="namebrand">
+        <img class="golestan" src="https://golestankooh.com/apppictures/logotype.png">
+       </div>
+
+  
+
+
+          <div class="menu-pages text-center"  >
+            <div class="menu-pages text-center" style="display: flex; justify-content: center;" >
+            <ion-card class="menu-pages-card scroll"  style="margin: 16px;">
+    
+      <div class="home-detailes-style " dir="rtl">
+    
+        <li class="nav-item m-2" style="margin-left: 6px;">
+            <img (click)="waters()" src="https://golestankooh.com/apppictures/facilities/1.png" style="width: 60px; cursor: pointer;">
+            <button class=" mt-1 btn home-detailes-style home-detailes-style1 me-1" (click)="waters()"
+             style="width: 115px;"> مجـــموعه آبـــی </button>
+        </li>
+    
+        <li class="nav-item m-2">
+            <img (click)="hotels()"  src="https://golestankooh.com/apppictures/facilities/2.png" style="width: 60px; cursor: pointer;">
+            <button class=" mt-1 btn home-detailes-style home-detailes-style1" (click)="hotels()"
+            style="width: 98px;" >عمارت چلچراغ</button>
+        </li>
+    
+        <li class="nav-item m-2">
+            <img  (click)="gotosuites()" src="https://golestankooh.com/apppictures/facilities/3.png" style="width: 60px; cursor: pointer;">
+            <button class=" mt-1 btn home-detailes-style home-detailes-style1"
+             style="width: 120px;" (click)="gotosuites()" >  مهمانکده دهکده </button>
+        </li>
+    
+    
+        <li class="nav-item m-2">
+            <img  (click)="burritoRestaurant()" src="https://golestankooh.com/apppictures/facilities/4.png" style="width: 60px; cursor: pointer;">
+            
+            <button class=" mt-1 btn home-detailes-style home-detailes-style1 me-1 bashgah"
+             style="width: 98px; margin-left: 2px;"  (click)="burritoRestaurant()"> رستوران بوریتو</button>
+            
+        </li>
+        <li class="nav-item m-2">
+            <img  (click)="sportGrounds()" src="https://golestankooh.com/apppictures/facilities/5.png" style="width: 60px; cursor: pointer;">
+            
+            <button class="  mt-1 btn home-detailes-style home-detailes-style1 " 
+            style="width: 110px;" (click)="sportGrounds()">زمین های ورزشی </button>
+            
+        </li>
+        <li class="nav-item text-center m-2">
+            <img  (click)="traditionalRestaurant()" src="https://golestankooh.com/apppictures/facilities/6.png" style="width: 60px; cursor: pointer;">
+            
+            <button class=" mt-1 btn home-detailes-style home-detailes-style1 "
+             style="width: 98px; margin-left: 5px;" (click)="traditionalRestaurant()"> باغ رستوران نابره 
+    
+            </button>
+        </li>
+    
+      <li class="nav-item m-2">
+          <img (click)="hall()" src="https://golestankooh.com/apppictures/facilities/7.png" style="width: 60px; cursor: pointer;">
+          
+          <button class=" mt-1 btn home-detailes-style home-detailes-style1 me-1 bashgah"
+           style="width: 98px; margin-left: 2px;" (click)="hall()"> تـــــــــالار</button>
+          
+      </li>
+      <li class="nav-item m-2">
+          <img (click)="pantry()" src="https://golestankooh.com/apppictures/facilities/8.png" style="width: 60px; cursor: pointer;">
+          
+          <button class="  mt-1 btn home-detailes-style home-detailes-style1 " 
+          style="width: 98px;"   (click)="pantry()">شــربـت خــانـه </button>
+          
+      </li>
+      <li class="nav-item text-center m-2">
+          <img (click)="coffe()" src="https://golestankooh.com/apppictures/facilities/9.png" style="width: 60px; cursor: pointer;">
+          
+          <button class=" mt-1 btn home-detailes-style home-detailes-style1 "
+           style="width: 115px; margin-left: 5px;" (click)="coffe()"> کــــافی شـــاپ
+  
+          </button>
+      </li>
+
+    <li class="nav-item m-2">
+        <img (click)="deli()" src="https://golestankooh.com/apppictures/facilities/13.png" style="width: 60px; cursor: pointer;">
+        
+        <button class=" mt-1 btn home-detailes-style home-detailes-style1 me-1 bashgah" 
+        style="width: 115px; margin-left: 2px;" (click)="deli()">گلستانفود</button>
+        
+    </li>
+    </div>
+
+    <div class="home-detailes-style " dir="rtl">
+
+    <li class="nav-item m-2">
+        <img   (click)="bazaar()" src="https://golestankooh.com/apppictures/facilities/11.png" style="width: 60px; cursor: pointer;">
+        
+        <button class="  mt-1 btn home-detailes-style home-detailes-style1 "
+         style="width: 98px;" (click)="bazaar()">بـــــازارچـــــه  </button>
+        
+    </li>
+
+
+    <li class="nav-item text-center m-2">
+        <img  (click)="greenhouses()" src="https://golestankooh.com/apppictures/facilities/12.png" style="width: 60px; cursor: pointer;">
+        
+        <button class=" mt-1 btn home-detailes-style home-detailes-style1 "
+         style="width: 98px; margin-left: 5px;"  (click)="greenhouses()"> گــــلخـــــانــه
+
+        </button>
+    </li>
+
+
+  <li class="nav-item text-center m-2">
+      <img  (click)="gameCenter()" src="https://golestankooh.com/apppictures/facilities/10.png" style="width: 60px; cursor: pointer;">
+      
+      <button class=" mt-1 btn home-detailes-style home-detailes-style1 "
+       style="width: 115px; margin-left: 5px;"  (click)="gameCenter()"> گیم سنتر
+
+      </button>
+  </li>
+  <li class="nav-item text-center m-2">
+    <img  (click)="royalsuits()" src="https://golestankooh.com/apppictures/facilities/3.png" style="width: 60px; cursor: pointer;">
+    
+    <button class=" mt-1 btn home-detailes-style home-detailes-style1 "
+     style="width: 115px; margin-left: 5px;"  (click)="royalsuits()"> سوییت های vip
+
+    </button>
+</li>
+</div>
+
+
+<!--این قسمت مخصوص نسخه موبایل میباشد-->
+<div class="home-detailes-style-mobile " dir="rtl">
+  <li class="nav-item m-2" style="margin-left: 6px;">
+    <img (click)="waters()" src="https://golestankooh.com/apppictures/facilities/1.png" style="width: 60px; cursor: pointer;">
+    <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 me-1" (click)="waters()"
+     style="width: 115px;"> مجـــموعه آبـــی </button>
+</li>
+
+<li class="nav-item m-2">
+    <img (click)="hotels()"  src="https://golestankooh.com/apppictures/facilities/2.png" style="width: 60px; cursor: pointer;">
+    <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1" (click)="hotels()" 
+    style="width: 98px;" >عمارت چلچراغ</button>
+</li>
+
+<li class="nav-item m-2">
+    <img  (click)="gotosuites()" src="https://golestankooh.com/apppictures/facilities/3.png" style="width: 60px; cursor: pointer;">
+    <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1"
+     style="width: 120px;" (click)="gotosuites()">مهمانکده دهکده </button>
+</li>
+</div>
+
+<div class="home-detailes-style-mobile " dir="rtl">
+<li class="nav-item m-2">
+    <img  (click)="burritoRestaurant()" src="https://golestankooh.com/apppictures/facilities/4.png" style="width: 60px; cursor: pointer;">
+    
+    <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 me-1 bashgah"
+     style="width: 98px; margin-left: 2px;" (click)="burritoRestaurant()"> رستوران بوریتو</button>
+    
+</li>
+<li class="nav-item m-2">
+    <img  (click)="sportGrounds()" src="https://golestankooh.com/apppictures/facilities/5.png" style="width: 60px; cursor: pointer;">
+    
+    <button class="  mt-1 btn home-detailes-style-mobile home-detailes-style1 " 
+    style="width: 110px;" (click)="sportGrounds()">زمین های ورزشی </button>
+    
+</li>
+<li class="nav-item text-center m-2">
+    <img (click)="traditionalRestaurant()" src="https://golestankooh.com/apppictures/facilities/6.png" style="width: 60px; cursor: pointer;">
+    
+    <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 "
+     style="width: 98px; margin-left: 5px;"  (click)="traditionalRestaurant()"> باغ رستوران نابره 
+
+    </button>
+</li>
+</div>
+
+<div class="home-detailes-style-mobile " dir="rtl">
+<li class="nav-item m-2">
+  <img (click)="hall()" src="https://golestankooh.com/apppictures/facilities/7.png" style="width: 60px; cursor: pointer;">
+  
+  <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 me-1 bashgah"
+   style="width: 110px; margin-left: 2px;" (click)="hall()"> تـــــــــالار</button>
+  
+</li>
+<li class="nav-item m-2">
+  <img  (click)="pantry()" src="https://golestankooh.com/apppictures/facilities/8.png" style="width: 60px; cursor: pointer;">
+  
+  <button class="mt-1 btn home-detailes-style-mobile home-detailes-style1"
+  style="width: 98px;" (click)="pantry()">شــربـت خــانـه </button>
+  
+</li>
+<li class="nav-item text-center m-2">
+  <img (click)="coffe()" src="https://golestankooh.com/apppictures/facilities/9.png" style="width: 60px; cursor: pointer;">
+  
+  <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 "
+   style="width: 115px; margin-left: 5px;"  (click)="coffe()"> کــــافی شـــاپ
+
+  </button>
+</li>
+</div>
+
+
+<div class="home-detailes-style-mobile " dir="rtl">
+<li class="nav-item m-2">
+<img (click)="deli()" src="https://golestankooh.com/apppictures/facilities/13.png" style="width: 60px;  margin-left: 8px; cursor: pointer;">
+
+<button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 me-1 bashgah" 
+style="width: 95px; margin-left: 8px;" (click)="deli()"> گلستانفود</button>
+
+</li>
+
+<li class="nav-item m-2">
+<img  (click)="bazaar()" src="https://golestankooh.com/apppictures/facilities/11.png" style="width: 60px; margin-left: 13px; cursor: pointer;">
+
+<button class="  mt-1 btn home-detailes-style-mobile home-detailes-style1 "
+ style="width: 98px; margin-left: 13px;"   (click)="bazaar()">بـــــازارچـــــه  </button>
+
+</li>
+
+
+<li class="nav-item text-center m-2">
+<img  (click)="greenhouses()" src="https://golestankooh.com/apppictures/facilities/12.png" style="width: 60px; cursor: pointer;">
+
+<button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 "
+ style="width: 98px; " (click)="greenhouses()"> گــــلخـــــانــه
+
+</button>
+</li>
+
+</div>
+
+
+<div class="home-detailes-style-mobile " dir="rtl">
+<li class="nav-item text-center m-2">
+<img  (click)="gameCenter()" src="https://golestankooh.com/apppictures/facilities/10.png" style="width: 60px; cursor: pointer;">
+
+<button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 "
+style="width: 115px;"  (click)="gameCenter()"> گیم سنتر
+
+</button>
+</li>
+
+<li class="nav-item text-center m-2">
+  <img  (click)="royalsuits()" src="https://golestankooh.com/apppictures/facilities/3.png" style="width: 60px; cursor: pointer;">
+  
+  <button class=" mt-1 btn home-detailes-style-mobile home-detailes-style1 "
+  style="width: 115px;"  (click)="royalsuits()"> سوییت های vip
+  
+  </button>
+  </li>
+</div>
+
+
+      </ion-card>
+      
+    </div>
+
+
+<app-mainfooter></app-mainfooter>
+    
+    </div>
+    </div>  
+    </div>
+
+</ion-content>

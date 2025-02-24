@@ -1,0 +1,141 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>سامانه مدیریت باشگاه مشتریان</title>
+	<meta name="google-site-verification" content="" />
+	<meta name="description" content="سامانه مدیریت باشگاه مشتریان">
+	<meta name=”robots” content="index, follow">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo $this->baseUrl() ?>/img/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo $this->baseUrl() ?>/img/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo $this->baseUrl() ?>/img/favicon/favicon-16x16.png">
+	<link rel="manifest" href="<?php echo $this->baseUrl() ?>/img/favicon/site.webmanifest">
+	<link rel="mask-icon" href="<?php echo $this->baseUrl() ?>/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Place favicon.ico in the root directory -->
+	<link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/css/normalize.css">
+	<link href="<?php echo $this->baseUrl() ?>/css/fontawsome/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/css/bootstrap-material-design.min.css">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/css/dataTables.bootstrap4.css">
+	<link href="<?php echo $this->baseUrl() ?>/css/toastr.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/css/animate.min.css" />
+	<link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/css/main.css">
+
+	<link rel="stylesheet/less" href="<?php echo $this->baseUrl() ?>/less/bootstrap-checkbox-tree.less"
+		type="text/css" />
+	<script src="<?php echo $this->baseUrl() ?>/js/jquery-3.2.1.min.js"></script>
+</head>
+<?php $authNamespace = Zend_Registry::get("authNamespace"); ?>
+
+<body class="rtl persianumber">
+
+	<div class="">
+
+		<header class=" ">
+			<div class="navbar navbar-light">
+
+
+				<ul class="nav navbar-nav ">
+
+
+					<li class="nav-item">
+						<span class="">
+							<?php echo $this->sitemap ?>
+						</span>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav ">
+
+
+					<li class="nav-item">
+						<span class="">
+							<button class="btn  m-0" type="button" style="border: solid 1px black;background: #e45a5a;"
+							 onclick="window.location.href='<?php echo $this->baseUrl()?>/index/logout'">
+								<i class="far fa-window-close fa-lg "></i> خروج
+							</button>
+						</span>
+					</li>
+				</ul>
+
+			</div>
+
+		</header>
+		<div id="dw-s1" class="bmd-layout-drawer">
+
+
+		</div>
+		<main class="">
+			<div class="container-fluid ">
+				<div id="presentation" class="box-card-content">
+					<?php
+					if (isset($this->toolbars) && count($this->toolbars) > 0) {
+						?>
+						<div class="row" style="background: linear-gradient(45deg, #dae2ec, #ececec);margin-bottom: 10px;">
+							<header class="">
+								<div class="">
+									<ul class="nav navbar-nav ">
+										<?php
+										foreach ($this->toolbars as $keytools => $tools):
+											?>
+											<li class="nav-item">
+												<?php
+												echo $tools;
+												?>
+											</li>
+
+											<?php
+										endforeach;
+										?>
+									</ul>
+								</div>
+							</header>
+						</div>
+						<?php
+					}
+					echo $this->layout()->content;
+					?>
+				</div>
+			</div>
+		</main>
+	</div>
+
+
+
+
+
+	<script src="<?php echo $this->baseUrl() ?>/js/vendor/modernizr.js"></script>
+
+	<script>
+		window.jQuery || document.write('<script src="<?php echo $this->baseUrl() ?>/js//vendor/jquery-3.2.1.min.js"><\/script>')
+	</script>
+	<script src="<?php echo $this->baseUrl() ?>/js/popper.js">
+	</script>
+	<script src="<?php echo $this->baseUrl() ?>/js/toastr.min.js"></script>
+	<script src="<?php echo $this->baseUrl() ?>/js/bootstrap-material-design.js">
+	</script>
+	<script src="<?php echo $this->baseUrl() ?>/js/chart.js"></script>
+
+
+	<script src="<?php echo $this->baseUrl() ?>/js/main.js"></script>
+	<script src="<?php echo $this->baseUrl() ?>/js/bootstrap.min.js"></script>
+	<script src="<?php echo $this->baseUrl() ?>/js/dataTables.js"></script>
+	<script src="<?php echo $this->baseUrl() ?>/js/dataTables.bootstrap4.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseUrl() ?>/js/bootstrap-checkbox-tree.js"></script>
+	<script src="<?php echo $this->baseUrl() ?>/js/bootbox.all.min.js"></script>
+	<?php
+	if (is_array($this->msg)) {
+		?>
+		<script>
+			toastr.<?php echo $this->msg['code'] ?>('<?php echo $this->msg['message'] ?>', '<?php echo $this->msg['title'] ?>', { timeOut: 10000 });
+		</script>
+		<?php
+	}
+	?>
+</body>
+
+</html>

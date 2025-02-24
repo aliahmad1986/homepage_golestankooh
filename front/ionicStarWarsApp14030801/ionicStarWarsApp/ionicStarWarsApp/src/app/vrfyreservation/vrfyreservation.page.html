@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion_title">نتیجه پرداخت در درگاه الکترونیک:</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    {{model.message}}
+
+  </div>
+  <div>
+    {{msg}}
+  </div>
+  <div Ngif="has_vocher">
+   
+    <a style="cursor: pointer;color: blue;" onclick="window.open('https://golestankooh.com/data/test.pdf')"> 
+      از طریق این لینک  می توانید وچر خود را دانلود کنید
+    </a>
+ 
+  </div>
+
+  <ion-button class="btn" onclick="location.href='https://golestankooh.com/#/reserve'">
+
+    بازگشت به صفحه اصلی
+  </ion-button>
+</ion-content>

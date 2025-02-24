@@ -1,0 +1,9 @@
+
+{
+    "/Api": {
+        "target": "https://golestankooh.com/backend/public",
+        "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+    }
+}

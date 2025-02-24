@@ -1,0 +1,8 @@
+cd /d C:\project\golestanReservationWizaedPanel
+ng build LibRegisterPanel
+npm i  C:\project\golestanReservationWizaedPanel\dist\lib-register-panel
+ng build LibReservPanel
+npm i C:\project\golestanReservationWizaedPanel\dist\lib-reserv-panel
+ng build LibWizardPanel
+npm i  C:\project\golestanReservationWizaedPanel\dist\lib-wizard-panel
+ng serve --host 0.0.0.0
