@@ -162,7 +162,7 @@ export class LibRegisterPanelComponent {
             }
             else {
 
-              this.snackBar.open(this.textconstants.REGISTERMOBILEUNVALID, 'باشه', { duration: 10000 });
+              this.snackBar.open(this.textconstants.REGISTER_NAMEFAMIL_ERROR, 'باشه', { duration: 10000 });
 
 
             }
@@ -204,11 +204,14 @@ export class LibRegisterPanelComponent {
             }
             else {
               const valicodeField = document.getElementById('validcodeField');
-              this.snackBar.open(this.textconstants.REGISTERMOBILEUNVALID, 'باشه', { duration: 10000 });
+              this.snackBar.open(this.textconstants.REGISTER_NAMEFAMIL_ERROR, 'باشه', { duration: 10000 });
               valicodeField?.classList.add('mat-form-field-danger');
             }
           },
-          error => { },
+          error => {
+            this.snackBar.open(this.textconstants.REGISTER_NAMEFAMIL_ERROR, 'باشه', { duration: 10000 });
+
+           },
         );
     }
   }

@@ -69,10 +69,12 @@
 
 .week_header {
     height: 30px;
-    width: calc(50% - 18px);
+    width: 100%;
     margin-bottom: 3px;
 }
-
+.overflow{
+    overflow: auto;
+}
 .day_header {
     display: block;
     width: calc(14.2857%);
@@ -131,7 +133,7 @@
 }
 
 .day_tag {
-    width: calc(15.0% - 6px);
+    width:calc(14.6% - 5px);
     margin-left: 3px;
     margin-bottom: 3px;
     border: 2px solid transparent;
@@ -368,6 +370,22 @@
         width: 730px;
     }
 }
+@media (min-width: 600px) {
+ 
+    .days_container {
+        text-align: center;
+        display: inline-block;
+        width: calc(50% - 17.97px);
+    }
+}
+@media (max-width: 600px) {
+ 
+    .days_container {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+    }
+}
 
 @media (min-width: 600px) {
     .rtl-mui-14vd3f8 {
@@ -376,6 +394,7 @@
         flex-grow: 0;
         max-width: 50%;
     }
+ 
 }
 
 .rtl-mui-14vd3f8 {

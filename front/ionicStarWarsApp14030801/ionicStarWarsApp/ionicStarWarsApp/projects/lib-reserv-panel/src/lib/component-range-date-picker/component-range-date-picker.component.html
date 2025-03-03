@@ -1,7 +1,7 @@
 <main class="main">
     <div class="content">
 
-        <div class="MuiBox-root rtl-mui-c35h6x">
+        <div class="MuiBox-root rtl-mui-c35h6x overflow">
             <div class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column rtl-mui-16a4sew">
                 <div class="MuiGrid-root MuiGrid-item rtl-mui-1wxaqej">
                     <div class="MuiGrid-root MuiGrid-container MuiGrid-item rtl-mui-5cu86e">
@@ -36,7 +36,10 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div class="range_indicator"></div>
+                            
+                            <div class="months_container">
+                                <div *ngFor="let month of cellCalenderReservations;let indexMonth=index;" class="days_container">
+                                    <div class="range_indicator"></div>
                             <div class="week_header_container">
                                 <div class="week_header">
                                     <div class="day_header">ش</div>
@@ -47,18 +50,7 @@
                                     <div class="day_header">پ</div>
                                     <div class="day_header">ج</div>
                                 </div>
-                                <div class="week_header">
-                                    <div class="day_header">ش</div>
-                                    <div class="day_header">ی</div>
-                                    <div class="day_header">د</div>
-                                    <div class="day_header">س</div>
-                                    <div class="day_header">چ</div>
-                                    <div class="day_header">پ</div>
-                                    <div class="day_header">ج</div>
-                                </div>
                             </div>
-                            <div class="months_container">
-                                <div *ngFor="let month of cellCalenderReservations;let indexMonth=index;" class="days_container">
                                     <div>
                                         <div class="day_tag_parent">
                                             <div *ngFor="let day of month.Days;let indexDay=index" [ngClass]="{'day_tag':true,

@@ -8,6 +8,7 @@ export const TEXTCONSTANTS={
     REGISTERFORMCODE:'شش رقم ارسال شده',
     REGISTERMOBILERESEND:'ارسال مجدد',
     REGISTEREMPTYMOBILE:'شماره موبایل را وارد کنید',
+    
     REGISTEREMPTYVALIDCODE:'کد ارسالی به موبایلتان را وارد کنید',
     REGISTERMOBILEUNVALID:'کد وارد شده صحیح نمی باشد',
     REGISTERMOBILEVALID:'ثبت نام شما با موفقیت انجام شد',
