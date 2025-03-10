@@ -216,12 +216,12 @@ class Api_Model_api
 	function setLockedRentItem($bill,$rentItems){
 		$startDate = $bill['choicedCalender']['miladiStartDate'];
 		$endDate = $bill['choicedCalender']['miladiEndDate'];
-		for($date=$startDate;$date<$endDate;$date=date('Y-m-d',strtotime('+1 day'))){
-			echo 'date is:'.$date."<br>";
+		for($date=$startDate;$date<$endDate;$date=date('Y-m-d',strtotime(' +1 day',strtotime($date)))){
+		
 			$this->setLok($rentItems,$date);
 		}
-		exit;
 	}
+
 	function setLok($rentItemID, $date)
 	{
 		
