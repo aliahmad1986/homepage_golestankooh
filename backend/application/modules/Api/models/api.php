@@ -115,9 +115,6 @@ class Api_Model_api
 		$Pay
 	) {
 		require('config.php');
-		$billData['personPrice'] = 0;
-		$billData['exteraPerson'] = 0;
-		$billData['kidPrices'] = 0;
 		$dbh = new PDO($con, $userdb, $passdb);
 		$sth = $dbh->prepare('SET NOCOUNT ON ;EXEC dbo.[SavePayRequestReservation] 
 							  @TypeReserve2 =:TypeReserve2,            
@@ -216,6 +213,27 @@ class Api_Model_api
 		$dbh = null;
 		return $rows;
 	}
+	function setLockedRentItem($bill,$rentItems){
+		$startDate = $bill['choicedCalender']['miladiStartDate'];
+		$endDate = $bill['choicedCalender']['miladiEndDate'];
+		for($date=$startDate;$date<$endDate;$date=date('Y-m-d',strtotime('+1 day'))){
+			echo 'date is:'.$date."<br>";
+			$this->setLok($rentItems,$date);
+		}
+		exit;
+	}
+	function setLok($rentItemID, $date)
+	{
+		
+		require('config.php');
+		$dbh = new PDO($con, $userdb, $passdb);
+		$sth = $dbh->prepare('EXEC dbo.Save_RO_RentItemLocked  @RentItemID = :rentItemID,@SelDate = :selDate');
+		$sth->bindParam('selDate', $date);
+		$sth->bindParam('rentItemID', $rentItemID);
+		$sth->execute();
+		$dbh = null;
+	}
+
 	function Calc_Reservation_Price($rentItemID, $bill)
 	{
 
@@ -224,17 +242,20 @@ class Api_Model_api
 		$person_count = $bill['countperson'];
 		$extera_person = $bill['exteraPerson'];
 		$kid_count = $bill['kidCount'];
+		$main_person=$person_count-$extera_person-$kid_count;
 		$total_night = date_diff(date_create($startDate), date_create($endDate))->format('%a');
 		$result = $this->getData($rentItemID, $startDate, $endDate);
+		
 		$person_price = 0;
 		$extera_person_price = 0;
 		$kid_price = 0;
 		for ($index = 0; $index < count($result) - 1; $index++) {
 
-			$person_price += (int) $person_count * $result[$index]['Price'];
+			$person_price += (int) $result[$index]['Price'];
 			$extera_person_price += (int) $extera_person * $result[$index]['ExtraItemPrice'];
 			$kid_price += (int) $kid_count * $result[$index]['KidPrice'];
 		}
+	
 		$all_price = $person_price + $extera_person_price + $kid_price;
 		return $all_price;
 	}
@@ -300,17 +321,29 @@ class Api_Model_api
 		return $response;
 
 	}
+		function send_sms($mobile,$text)
+	{
+		$data = array('result' => '', 'success' => false);
+		if ($mobile != '') {
+			$resultSms = $this->httpPost($mobile, $text);
+			if (isset($resultSms)) {			
+				$data['result'] = "پیام با موفقیت ارسال شد";
+				$data['success'] = true;
+			}
+		}
+		return $data;
+	}
 	function sendSmsService($mobile)
 	{
 		$data = array('result' => '', 'success' => false);
 		if ($mobile != '') {
-			$gcode =999999;// random_int(100000, 999999);
+			$gcode =random_int(100000, 999999);
 			$hashed = hash("sha512", $gcode);
 			$text = "کد رزرو در سایت گلستانکوه" . "\n" . $gcode . "\n" . "لغو 11";
 
-			//$resultSms = $this->httpPost($mobile, $text);
-			//if (isset($resultSms)) {
-				if (true) {
+			$resultSms = $this->httpPost($mobile, $text);
+			if (isset($resultSms)) {
+			
 				$data['result'] = $hashed;
 				$data['success'] = true;
 			}
@@ -364,8 +397,14 @@ class Api_Model_api
 					);
 				}
 			}
-			$timeout = ($DateS <= $today) ? 1 : 0;
+			$timeout = ($DateS <= $today)||$val["ItemEnabled"]==0 ? 1 : 0;
+			
 			$val['Price'] = $val['Price'] / 10;
+			
+			$val['KidPrice'] = $val['KidPrice'] / 10;
+			
+			$val['ExtraItemPrice'] = $val['ExtraItemPrice'] / 10;
+			
 			$val['DayNumber'] = (int) $temp[2];
 			$val['timeout'] = $timeout;
 			$val['empty_day_tag'] = 0;

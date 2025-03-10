@@ -118,7 +118,7 @@ export class LibReservPanelComponent {
   public AddKid(event: any) {
     this.maxcount = this.Capacity;
     this.kidCount++;
-    if (this.kidCount >= 10) {
+    if (this.kidCount >= 3) {
 
       this.toggleaddkid = false;
     }

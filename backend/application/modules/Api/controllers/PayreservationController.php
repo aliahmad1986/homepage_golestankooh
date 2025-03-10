@@ -15,6 +15,7 @@ class Api_PayreservationController extends REST_Controller
                 $typeReserve2 = $modelApi->GetValue($post['TypeReserve2'], 'TypeReserve2', true);
                 $incomeReasonID = $modelApi->GetValue($post['IncomeReasonID'], 'IncomeReasonID ', true);
                 $rentItemID = $modelApi->GetValue($post['RentItemID'], 'RentItemID ', true);
+                $modelApi->setLockedRentItem($bill,$rentItemID);
                 $all_price = $modelApi->Calc_Reservation_Price($rentItemID, $bill);
                 $resultSavePayRequest = $modelApi->Pay_Gettoken_Reservation($all_price, $personId, $bill, $typeReserve2, $incomeReasonID, $rentItemID, '');
                 $this->view->result = array(
