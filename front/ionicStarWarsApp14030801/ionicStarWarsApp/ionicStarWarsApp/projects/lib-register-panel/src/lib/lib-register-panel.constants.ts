@@ -19,5 +19,5 @@ export const TEXTCONSTANTS={
     REGISTERMOBILEREQUIRED:' شماره موبایل الزامی می باشد',
     REGISTERFORMNAMEREQUIRED:' نام الزامی می باشد',
     REGISTERFORMFAMILREQUIRED:' نام خانوادگی الزامی می باشد',
-    REGISTER_NAMEFAMIL_ERROR:' خطا در ذخیره سازی نام و نام خانوادگی',
+    REGISTER_NAMEFAMIL_ERROR:'در ورود اطلاعات دقت کنید',
 };

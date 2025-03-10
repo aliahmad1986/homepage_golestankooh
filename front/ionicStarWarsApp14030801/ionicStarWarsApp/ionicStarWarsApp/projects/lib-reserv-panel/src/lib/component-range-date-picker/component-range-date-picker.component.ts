@@ -4,6 +4,7 @@ import { LibReservPanelService } from '../lib-reserv-panel.service';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { CellCalenderReservation, ChoicedCalender, Month } from './cell-calender-reservation.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { CellCalenderReservation, ChoicedCalender, Month } from './cell-calender
 export class ComponentRangeDatePickerComponent implements OnInit, OnDestroy {
   @Input() RentItemID: number = 0;
   @Output() setDateToParent = new EventEmitter<any>();
-
+  snackBar: MatSnackBar;
   cellCalenderReservations: Month[] = [];
   cellCalenderReservationBackup: Month[] = [];
   starttDate: string = "";
@@ -51,11 +52,11 @@ export class ComponentRangeDatePickerComponent implements OnInit, OnDestroy {
       this.loadingBackdropService.show();
       let params = new Map<string, string>();
       params.
-      set("StartDate", this.starttDate).
-      set("RentItemID", this.RentItemID.toString()).
-      set("Act",this.actCalender);
+        set("StartDate", this.starttDate).
+        set("RentItemID", this.RentItemID.toString()).
+        set("Act", this.actCalender);
       this.libReservPanelService
-        .SubmitPost(params,'Api/Selectcalender')
+        .SubmitPost(params, 'Api/Selectcalender')
         .pipe(finalize(() => this.loadingBackdropService.hide()))
         .subscribe(
           (data) => {
@@ -83,14 +84,23 @@ export class ComponentRangeDatePickerComponent implements OnInit, OnDestroy {
         this.cellCalenderReservations[indexMonth].Days[indexDay].checkin_selected_date = 1;
       }
       else {
+        if (this.startSelectedDay[0] == indexMonth && this.startSelectedDay[1] == indexDay) {
+          this.startSelectedDay[0] = -1;
+          this.startSelectedDay[1] = -1;
+          this.cellCalenderReservations[indexMonth].Days[indexDay].selected_in_range_date = 0;
+          this.cellCalenderReservations[indexMonth].Days[indexDay].checkin_selected_in_range_date = 0;
+          this.cellCalenderReservations[indexMonth].Days[indexDay].checkin_selected_date = 0;
+          return;
+        }
         if (indexMonth > this.startSelectedDay[0] || (indexMonth == this.startSelectedDay[0] && indexDay > this.startSelectedDay[1])) {
-          this.endSelectedDay[0] = indexMonth;
-          this.endSelectedDay[1] = indexDay;
-          this.cellCalenderReservations[indexMonth].Days[indexDay].selected_in_range_date = 1;
-          this.cellCalenderReservations[indexMonth].Days[indexDay].checkout_selected_date = 1;
-          this.cellCalenderReservations[indexMonth].Days[indexDay].checkout_selected_in_range_date = 1;
+
+          
           if (indexMonth == this.startSelectedDay[0]) {
             for (let i = this.startSelectedDay[1] + 1; i < indexDay; i++) {
+              if (this.cellCalenderReservations[indexMonth].Days[i].timeout == 1) {
+                this.snackBar.open("بازه انتخابی معتبر نیست", 'باشه', { duration: 10000 });
+                return;
+              }
               this.cellCalenderReservations[indexMonth].Days[i].selected_in_range_date = 1;
               this.cellCalenderReservations[indexMonth].Days[i].checkout_selected_date = 0;
               this.cellCalenderReservations[indexMonth].Days[i].checkout_selected_in_range_date = 0;
@@ -98,16 +108,31 @@ export class ComponentRangeDatePickerComponent implements OnInit, OnDestroy {
           }
           else {
             for (let i = this.startSelectedDay[1] + 1; i < this.cellCalenderReservations[this.startSelectedDay[0]].Days.length; i++) {
+              if (this.cellCalenderReservations[this.startSelectedDay[0]].Days[i].timeout == 1) {
+                this.snackBar.open("بازه انتخابی معتبر نیست", 'باشه', { duration: 10000 });
+                return;
+              }
               this.cellCalenderReservations[this.startSelectedDay[0]].Days[i].selected_in_range_date = 1;
               this.cellCalenderReservations[this.startSelectedDay[0]].Days[i].checkout_selected_date = 0;
               this.cellCalenderReservations[this.startSelectedDay[0]].Days[i].checkout_selected_in_range_date = 0;
             }
             for (let i = 0; i < indexDay; i++) {
+              if (this.cellCalenderReservations[indexMonth].Days[i].timeout == 1) {
+                this.snackBar.open("بازه انتخابی معتبر نیست", 'باشه', { duration: 10000 });
+                return;
+              }
               this.cellCalenderReservations[indexMonth].Days[i].selected_in_range_date = 1;
               this.cellCalenderReservations[indexMonth].Days[i].checkout_selected_date = 0;
               this.cellCalenderReservations[indexMonth].Days[i].checkout_selected_in_range_date = 0;
             }
           }
+          this.endSelectedDay[0] = indexMonth;
+          this.endSelectedDay[1] = indexDay;
+
+          this.cellCalenderReservations[indexMonth].Days[indexDay].selected_in_range_date = 1;
+          this.cellCalenderReservations[indexMonth].Days[indexDay].checkout_selected_date = 1;
+          this.cellCalenderReservations[indexMonth].Days[indexDay].checkout_selected_in_range_date = 1;
+          
           this.SetstartDateToParent(
             this.cellCalenderReservations[this.startSelectedDay[0]].Days[this.startSelectedDay[1]].DateS,
             this.cellCalenderReservations[this.endSelectedDay[0]].Days[this.endSelectedDay[1]].DateS,
@@ -152,7 +177,9 @@ export class ComponentRangeDatePickerComponent implements OnInit, OnDestroy {
             if (indexMonth == this.startSelectedDay[0]) {
               if (Array.isArray(this.cellCalenderReservations[indexMonth].Days)) {
                 for (let i = this.startSelectedDay[1] + 1; i < indexDay; i++) {
-                  this.cellCalenderReservations[indexMonth].Days[i].selected_in_range_date = 1;
+                  if (this.cellCalenderReservations[indexMonth].Days[i].timeout == 0) {
+                    this.cellCalenderReservations[indexMonth].Days[i].selected_in_range_date = 1;
+                  }
                 }
               }
 
@@ -161,11 +188,16 @@ export class ComponentRangeDatePickerComponent implements OnInit, OnDestroy {
               if (Array.isArray(this.cellCalenderReservations[this.startSelectedDay[0]].Days)) {
                 for (let i = this.startSelectedDay[1] + 1; i < this.cellCalenderReservations[this.startSelectedDay[0]].Days.length; i++) {
                   this.cellCalenderReservations[this.startSelectedDay[0]].Days[i].selected_in_range_date = 1;
+                  if (this.cellCalenderReservations[indexMonth].Days[i].timeout == 0) {
+                    this.cellCalenderReservations[indexMonth].Days[i].selected_in_range_date = 1;
+                  }
                 }
               }
               if (Array.isArray(this.cellCalenderReservations[indexMonth].Days)) {
                 for (let i = 0; i < indexDay; i++) {
-                  this.cellCalenderReservations[indexMonth].Days[i].selected_in_range_date = 1;
+                  if (this.cellCalenderReservations[indexMonth].Days[i].timeout == 0) {
+                    this.cellCalenderReservations[indexMonth].Days[i].selected_in_range_date = 1;
+                  }
                 }
               }
             }
@@ -185,7 +217,7 @@ export class ComponentRangeDatePickerComponent implements OnInit, OnDestroy {
           if ((this.cellCalenderReservations[i].Days[j].selected_in_range_date == 1 ||
             this.cellCalenderReservations[i].Days[j].checkin_selected_in_range_date == 1 ||
             this.cellCalenderReservations[i].Days[j].checkout_selected_in_range_date == 1)
-            &&( this.cellCalenderReservations[i].Days[j].empty_day_tag==0)
+            && (this.cellCalenderReservations[i].Days[j].empty_day_tag == 0)
           ) {
             choicedCellDay.push(this.cellCalenderReservations[i].Days[j]);
 
