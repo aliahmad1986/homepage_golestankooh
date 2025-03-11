@@ -218,17 +218,18 @@ class Api_Model_api
 		$startDate = $bill['choicedCalender']['miladiStartDate'];
 		$endDate = $bill['choicedCalender']['miladiEndDate'];
 		for($date=$startDate;$date<$endDate;$date=date('Y-m-d',strtotime(' +1 day',strtotime($date)))){
-		
-			$this->setLok($rentItems,$date);
-			return  array('flag' => true, 'message' => 'با موفقیت انجام شد');
+			//echo 'date is :'.$date;
+			$this->setLock($rentItems,$date);
+			
 		}
+			return  array('success' => true, 'message' => 'با موفقیت انجام شد');
 		}
 		catch(Exception $e){
-			return  array('flag' => false, 'message' => 'خطا در قفل کردن رزرو اتاق');
+			return  array('success' => false, 'message' => 'خطا در قفل کردن رزرو اتاق');
 		}
 	}
 
-	function setLok($rentItemID, $date)
+	function setLock($rentItemID, $date)
 	{
 		
 		require('config.php');
