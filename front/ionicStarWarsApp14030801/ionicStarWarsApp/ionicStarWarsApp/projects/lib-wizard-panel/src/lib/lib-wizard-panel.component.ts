@@ -101,6 +101,27 @@ export class LibWizardPanelComponent {
     }
     return true;
   }
+  lockDate(){
+    this.loadingBackdropService.show();
+    let params=new Map<string,string>();
+    params.set('bill',JSON.stringify(this.bill))
+    .set('rentItemID',this.RentItemID.toString()); 
+    this.libWizardPanelService
+      .postSubmit(params,"Api/Setlock")
+      .pipe(finalize(() => this.loadingBackdropService.hide()))
+      .subscribe(
+        (data) => {
+          if (data.result.success) {
+            this.goNextStep();            
+          }
+          else {
+            this.snackBar.open(this.textconst.NOLOCKRENTITEM, 'باشه', { duration: 10000 });            
+          }
+
+        },
+        error => { },
+      );
+  }
 
   goNextStep() {
     if (this.personId > 0) {

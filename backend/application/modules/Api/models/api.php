@@ -214,11 +214,17 @@ class Api_Model_api
 		return $rows;
 	}
 	function setLockedRentItem($bill,$rentItems){
+		try{
 		$startDate = $bill['choicedCalender']['miladiStartDate'];
 		$endDate = $bill['choicedCalender']['miladiEndDate'];
 		for($date=$startDate;$date<$endDate;$date=date('Y-m-d',strtotime(' +1 day',strtotime($date)))){
 		
 			$this->setLok($rentItems,$date);
+			return  array('flag' => true, 'message' => 'با موفقیت انجام شد');
+		}
+		}
+		catch(Exception $e){
+			return  array('flag' => false, 'message' => 'خطا در قفل کردن رزرو اتاق');
 		}
 	}
 

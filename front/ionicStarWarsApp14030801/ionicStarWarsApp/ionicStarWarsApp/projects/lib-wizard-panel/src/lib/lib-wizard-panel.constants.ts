@@ -9,6 +9,7 @@ export const TEXTCONSTANTS={
     STEPPERRESERVATIONSUBMIT:'پرداخت',
     STEPPERRESERVATIONFINISH:'پایان',
     STEPPERRESNAME:'نام و نام خانوادگی رزرو کننده',
+    NOLOCKRENTITEM:'عملیات قفل کردن آیتم رزرو شده انجام نشد!',
     STEPPERRESMOBILE:'َشماره موبایل رزرو کننده',
     ISREGISTERED:'درخواست شما با موفقیت ثبت شد. شماره پذیرش شما:',
     NOTREGISTERED:'متاسفانه درخواست شما انجام نشد.لطفا با تیم پشتیبانی تماس بگیرید.',
